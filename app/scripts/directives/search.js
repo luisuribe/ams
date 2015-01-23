@@ -9,10 +9,9 @@
 angular.module('tmbdApp')
   .directive('search', function () {
     return {
-      template: '<div></div>',
+      templateUrl: 'views/search.html',
       restrict: 'E',
-      link: function postLink(scope, element, attrs) {
-        element.text('this is the search directive');
-      }
+      controller: 'SearchCtrl',
+      scope: {}
     };
   });

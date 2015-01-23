@@ -15,7 +15,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ui.select'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -26,6 +27,14 @@ angular
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
+      })
+      .when('/person/:param', {
+        templateUrl: 'views/person.html',
+        controller: 'PersonCtrl'
+      })
+      .when('/movie/:param', {
+        templateUrl: 'views/movie.html',
+        controller: 'MovieCtrl'
       })
       .otherwise({
         redirectTo: '/'
