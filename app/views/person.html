@@ -1,33 +1,42 @@
 <div class="jumbotron">
-  <h1>{{results.person.name}}</h1>
-  {{results.person.birthday}}
-  {{results.person.place_of_birth}}
-  <div class="row">
-  <div class="col-md-6">
-      
-  </div>
-  <div class="col-md-6">
-      {{results.person.biography}}
-  </div>
-  </div>
-</div>
+    <h1>{{results.person.name}}</h1>
+    {{results.person.birthday}}
+    {{results.person.place_of_birth}}
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{configuration.images.base_url}}{{configuration.images.profile_sizes[1]}}{{results.person.profile_path}}">
+        </div>
+        <div class="col-md-6">
+            {{results.person.biography}}
+        </div>
+    </div>
 
-{{results}}
-
-
-<!-- <div ng-repeat="movie in results.movies.cast">
-    <li>
-        <a href="/#/movie/{{movie.id}}">
-            {{movie.original_title}}
-        </a>
-    </li>
+    <div class="row">
+        <div class="col-md-6">
+            <div>
+                <h2>Worked in</h2>
+                <div ng-repeat="credit in results.movies.cast">
+                    <div style="float: left; margin: 10px; width: 100px; height: 150px;" ng-if="credit.poster_path">
+                        <a href="#/movie/{{ credit.id }}" title="{{ credit.title }} as {{ credit.character }}">
+                            <img src="{{configuration.images.base_url}}{{configuration.images.poster_sizes[0]}}{{credit.poster_path}}" title="{{ credit.title }} as {{ credit.character }}" width="65" height="97" ng-if="credit.poster_path" />
+                        </a>
+                        <br />
+                        {{credit.character}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div>
+                <h2>Usually works with</h2>
+                <ul>
+                    <li ng-repeat="person in results.worksWith" style="text-align: left">
+                        <a href="#/person/{{person.id}}" title="{{ person.name }}">
+                            {{person.name}} (in {{person.val}} movies)
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
- -->
-<div ng-repeat="person in results.worksWith | limitTo: limit">
-    <li>
-        <a href="/#/person/{{person.id}}">
-            {{person.name}} (in {{person.val}} movies)
-        </a>
-    </li>
-</div>
-<button ng-click='loadMore()'>Load More</button>
