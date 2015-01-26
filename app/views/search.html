@@ -1,11 +1,8 @@
-<h3>Search by actor</h3>
-    <ui-select ng-model="result.selected" ng-disabled="disabled" reset-search-input="false">
-    <ui-select-match placeholder="Enter an result...">{{$select.selected.name}}</ui-select-match>
-    <ui-select-choices repeat="result in results track by $index" refresh="doSearch($select.search)" refresh-delay="0">
-        <a href="/#/person/{{result.id}}">
-            <div ng-bind-html="result.name"></div>
-        </a>
-    </ui-select-choices>
+<ui-select ng-model="result.selected" ng-disabled="disabled" reset-search-input="false" on-select="goToPerson($item)">
+<ui-select-match placeholder="Enter a name ...">{{$select.selected.name}}</ui-select-match>
+<ui-select-choices repeat="result in results track by $index" refresh="doSearch($select.search)" refresh-delay="0">
+    <a href="/#/person/{{result.id}}">
+        <div ng-bind-html="result.name"></div>
+    </a>
+</ui-select-choices>
 </ui-select>
-
-<p class="bg-primary">Search for any actor / movie / tv show</p>

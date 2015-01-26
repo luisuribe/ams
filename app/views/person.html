@@ -1,17 +1,33 @@
 <div class="jumbotron">
-  <search></search>
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-  </p>
+  <h1>{{results.person.name}}</h1>
+  {{results.person.birthday}}
+  {{results.person.place_of_birth}}
+  <div class="row">
+  <div class="col-md-6">
+      
+  </div>
+  <div class="col-md-6">
+      {{results.person.biography}}
+  </div>
+  </div>
 </div>
 
-{{results.person.name}}
+{{results}}
 
-<div ng-repeat="movie in results.movies.cast">
+
+<!-- <div ng-repeat="movie in results.movies.cast">
     <li>
         <a href="/#/movie/{{movie.id}}">
             {{movie.original_title}}
         </a>
     </li>
 </div>
+ -->
+<div ng-repeat="person in results.worksWith | limitTo: limit">
+    <li>
+        <a href="/#/person/{{person.id}}">
+            {{person.name}} (in {{person.val}} movies)
+        </a>
+    </li>
+</div>
+<button ng-click='loadMore()'>Load More</button>

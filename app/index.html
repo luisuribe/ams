@@ -22,21 +22,27 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#/about">About</a></li>
-          <li><a ng-href="#">Contact</a></li>
-        </ul>
-        <h3 class="text-muted">tmbd</h3>
-      </div>
+    <div class="container-fluid">
+        <div class="col-md-1">.col-md-1</div>
 
-      <div ng-view=""></div>
+        <div class="col-md-10">
+            <div class="header">
+                <ul class="nav nav-pills pull-right">
+                    <li><search></search></li>
+                </ul>
+                <h3 class="text-muted"><a ng-href="/#/">TMDB Actor's search</a></h3>
+            </div>
 
-      <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
+            <div class="row">
+                <div ng-view=""></div>
+            </div>
+
+            <div class="footer">
+                <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+            </div>
+        </div>
+
+        <div class="col-md-1">.col-md-1</div>
     </div>
 
 
@@ -81,7 +87,6 @@
         <script src="scripts/controllers/person.js"></script>
         <script src="scripts/controllers/movie.js"></script>
         <script src="scripts/directives/search.js"></script>
-        
         <script src="scripts/services/tmdb.js"></script>
         <!-- endbuild -->
 </body>

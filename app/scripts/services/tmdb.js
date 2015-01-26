@@ -49,6 +49,64 @@ angular.module('tmbdApp')
         return promise;
     }
 
+    this.getMovieCredits = function($param) {
+        var promise = $http.get( apiUrl + 'movie/' + $param + '/credits?api_key=' + apiKey ).then(function (response) {
+            return response.data;
+        });
+        return promise;
+    }
+
+    this.getWorksWith = function($movies, $actor_id, $q) {
+
+
+    //     for (var i in $movies.cast) {
+    //         promise = promise.then(function() {
+    //             return getMovieCredits(i);
+    //         }).then(function(newValue) {
+    //         // ...
+    //         newValues.push(newValue);
+    //     });
+    // });
+
+    // return promise.then(function() {
+    //     return newValues;
+    // });
+
+
+        // var deferred = $q.defer();
+
+        // var callback = function($movies, $actor_id) {
+        //     for (var i in $movies.cast) {
+        //         if ($movies.cast.hasOwnProperty(i)) {
+        //             tmdb.getMovieCredits($movies.cast[i].id).then(function(response) {
+        //                 for (var actor in response.cast) {
+        //                     if (response.cast.hasOwnProperty(actor) && (response.cast[actor].id != $actor_id)) {
+        //                         if (worksWith[response.cast[actor].id] === undefined) {
+        //                             worksWith[response.cast[actor].id] = 1;
+        //                         } else {
+        //                             worksWith[response.cast[actor].id] += 1;
+        //                         }
+        //                     }
+        //                 }
+        //             })
+        //         }
+        //     }
+        // };
+
+        // callback($movies, $actor_id).then(function(){ console.log("ya" )});
+        // deferred.done(callback);  // when the deferred is resolved, invoke the callback, you can chain many callbacks here if needed
+        // deferred.resolve();
+        // return deferred;
+
+        // var worksWith = {};
+
+
+        // var promise = $http.get( apiUrl + 'movie/' + $param + '?api_key=' + apiKey ).then(function (response) {
+        //     return response.data;
+        // });
+        // return promise;
+    }
+
 
 
   });

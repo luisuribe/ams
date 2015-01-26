@@ -8,7 +8,7 @@
  * Controller of the tmbdApp
  */
 angular.module('tmbdApp')
-  .controller('SearchCtrl', function ($scope, tmdb) {
+  .controller('SearchCtrl', function ($scope, tmdb, $location) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -24,10 +24,13 @@ angular.module('tmbdApp')
         if ( query.length >= 3 ) {
             tmdb.doSearch(query).then(function(result){
                 $scope.results = result.results;
-                console.log(result);
             });
         } else {
             $scope.view.results = [];
         }
     };
-  });
+
+    $scope.goToPerson = function($actor) {
+        $location.path('/person/' + $actor.id);
+    }
+});
