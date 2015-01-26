@@ -1,40 +1,41 @@
 <div class="jumbotron">
-    <h1>{{results.person.name}}</h1>
-    {{results.person.birthday}}
-    {{results.person.place_of_birth}}
-    <div class="row">
+        <div class="row">
         <div class="col-md-6">
+            <h1>{{results.person.name}}</h1>
+            ({{results.person.birthday}} - {{results.person.deathday}}) - {{results.person.place_of_birth}}
+            <br>
             <img src="{{configuration.images.base_url}}{{configuration.images.profile_sizes[1]}}{{results.person.profile_path}}">
+            <br><br>
+            <span>{{results.person.biography}}</span>
+            <!-- {{results.person}} -->
         </div>
-        <div class="col-md-6">
-            {{results.person.biography}}
-        </div>
-    </div>
-
-    <div class="row">
         <div class="col-md-6">
             <div>
                 <h2>Worked in</h2>
-                <div ng-repeat="credit in results.movies.cast">
+                <div ng-repeat="credit in results.movies.cast | limitTo: moviesLimit">
                     <div style="float: left; margin: 10px; width: 100px; height: 150px;" ng-if="credit.poster_path">
                         <a href="#/movie/{{ credit.id }}" title="{{ credit.title }} as {{ credit.character }}">
                             <img src="{{configuration.images.base_url}}{{configuration.images.poster_sizes[0]}}{{credit.poster_path}}" title="{{ credit.title }} as {{ credit.character }}" width="65" height="97" ng-if="credit.poster_path" />
                         </a>
                         <br />
-                        {{credit.character}}
+                        as <span style="font-style: italic">{{credit.character}}</span>
                     </div>
                 </div>
+                <div style="clear: both"></div>
+                <button type="button" class="btn btn-default btn-xs" ng-click="loadMoreMovies()" style="padding: 5px; font-size: 1em">Load more ...</button>
             </div>
-        </div>
-        <div class="col-md-6">
+
             <div>
                 <h2>Usually works with</h2>
                 <ul>
-                    <li ng-repeat="person in results.worksWith" style="text-align: left">
+                    <li ng-repeat="person in results.worksWith | limitTo: worksWithLimit" style="text-align: left">
                         <a href="#/person/{{person.id}}" title="{{ person.name }}">
                             {{person.name}} (in {{person.val}} movies)
                         </a>
                     </li>
+                    <div style="clear: both"></div>
+                    <br>
+                    <button type="button" class="btn btn-default btn-xs" ng-click="loadMorePerson()" style="padding: 5px; font-size: 1em">Load more ...</button>
                 </ul>
             </div>
         </div>

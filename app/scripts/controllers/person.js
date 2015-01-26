@@ -21,11 +21,16 @@ angular.module('tmbdApp')
         worksWith: []
     }
 
-    $scope.limit = 5;
+    $scope.worksWithLimit = 5;
+    $scope.moviesLimit    = 6;
 
     // loadMore function
-    $scope.loadMore = function() {
-        $scope.limit += 5;
+    $scope.loadMorePerson = function() {
+        $scope.worksWithLimit += 5;
+    }
+
+    $scope.loadMoreMovies = function() {
+        $scope.moviesLimit += 6;
     }
 
     tmdb.getConfiguration().then(function(result){

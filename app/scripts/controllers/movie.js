@@ -19,8 +19,16 @@ angular.module('tmbdApp')
         movie: [],
     }
 
+    tmdb.getConfiguration().then(function(result){
+        $scope.configuration = result;
+    });
+
     tmdb.getMovieInfo($routeParams.param).then(function(result){
         $scope.results.movie = result;
+    });
+
+    tmdb.getMovieCredits($routeParams.param).then(function(result){
+        $scope.results.credits = result;
     });
 
   });

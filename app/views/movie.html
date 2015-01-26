@@ -1,9 +1,38 @@
 <div class="jumbotron">
-  <search></search>
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-  </p>
-</div>
+    <h1>{{results.movie.original_title}}</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{configuration.images.base_url}}{{configuration.images.profile_sizes[1]}}{{results.movie.poster_path}}">
+            <br>
+            <span style="font-style: italic;">{{results.movie.tagline}}</span>
+            <br>
+            {{results.movie.overview}}
+            <div>
+                <h2>Crew</h2>
+                <ul>
+                    <li ng-repeat="person in results.credits.crew" style="text-align: left">
+                        <a href="#/person/{{person.id}}" title="{{ person.name }}">
+                            {{person.name}} ({{person.job}})
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
-{{results}}
+        </div>
+        <div class="col-md-6">
+            <div>
+                <h2>Cast</h2>
+                <div ng-repeat="credit in results.credits.cast" ng-if="credit.profile_path">
+                    <div style="float: left; margin: 10px; width: 100px; height: 150px;" ng-if="credit.profile_path">
+                        <a href="#/person/{{ credit.id }}" title="{{ credit.title }} as {{ credit.character }}">
+                            <img src="{{configuration.images.base_url}}{{configuration.images.poster_sizes[0]}}{{credit.profile_path}}" title="{{ credit.title }} as {{ credit.character }}" width="65" height="97" ng-if="credit.profile_path" />
+                        </a>
+                        <br />
+                        {{credit.name}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
